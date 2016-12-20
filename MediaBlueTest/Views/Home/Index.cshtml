@@ -1,0 +1,43 @@
+﻿@model MediaBlueTest.Models.HomeViewModel
+@using MediaBlueTest.Models
+
+@section header {
+    <div class="page-header">
+        <h1>Owl Rater 2016 <small>We're going to rate some owls.</small></h1>
+    </div>
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>Please rate each owl; 1 = Ugly, 10 = Beautiful.</h5>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.AntiForgeryToken()
+
+            @for (var i = 0; i < Model.ImageList.Count; i++)
+            {
+            <div class="row owl-row">
+                @Html.HiddenFor(m => m.ImageList[i].ImageId)
+                <div class="col-sm-4 col-md-2">
+                    <a href="@Url.Action("Details", "Image", new { id = Model.ImageList[i].ImageId })"><img class="img-responsive img-thumbnail" src="@Model.ImageList[i].ImageURL" /></a>
+                </div>
+                <div class="col-sm-8 col-md-10">
+                    <div class="btn-group btn-block btn-group-full-width" role="group" data-toggle="buttons">
+                        @for (var j = 0; j < Model.ImageList[i].ScaleItems.Count; j++)
+                        {
+                            <label class="btn btn-sm btn-@Model.ImageList[i].ScaleItems[j].CssClass">
+                                @Html.RadioButtonFor(m => m.ImageList[i].SelectedScaleId, Model.ImageList[i].ScaleItems[j].ScaleId) @Model.ImageList[i].ScaleItems[j].Name
+                            </label>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    }
+</div>

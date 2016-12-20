@@ -1,0 +1,44 @@
+﻿@model MediaBlueTest.Models.HomeViewModelSubmit
+@using MediaBlueTest.Models
+
+@{
+    ViewBag.Title = "View Your Results";
+}
+@section header {
+    <div class="page-header">
+        <h1>View your owl rating <small>hoot</small></h1>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>Sorted best to worst</h5>
+    </div>
+    <div class="panel-body">
+
+        @if (Model.SessionSubmitScaleList.Count > 0)
+            {
+            <div class="row">
+                @foreach (SessionSubmitScale s in Model.SessionSubmitScaleList)
+                {
+
+                <div class="col-sm-6 col-md-2">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="@s.Image.ImageURL" />
+                        <div class="caption">
+                            <div class="alert alert-info text-center"><h5>Rating: <span class="label label-default">@s.Scale.Name</span></h5></div>
+                        </div>
+                    </div>
+                </div>
+
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">You didn't rate any owls :(. Please go back and rate at least one owl.</div>
+        }
+    </div>
+    <div class="panel-footer">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back</a>
+    </div>
+</div>

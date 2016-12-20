@@ -1,0 +1,26 @@
+﻿body {
+    margin-top:20px;
+}
+.btn-group-full-width{
+    width:100%;
+}
+.owl-row{
+    border-bottom:1px solid #F5F5F5;
+    margin-bottom:15px;
+    padding-bottom:15px;
+}
+.owl-row:last-child{
+    margin-bottom:0px;
+}
+.thumbnail .caption .alert {
+    margin-bottom:0;
+}
+.thumbnail .caption .alert > h5 {
+    margin:0;
+}
+.thumbnail > img {
+    max-height: 150px;
+}
+.panel-body .alert:last-child{
+    margin-bottom:0;
+}
